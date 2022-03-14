@@ -1,0 +1,237 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Descr:       Sitzungsprotokoll Psych. Grundlagen für Informatiker
+%% Author:      Manuel Berg, m.berg@enbw.com
+%%  -*- coding: utf-8 -*-
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\documentclass[
+   ngerman          % neue deutsche Rechtschreibung
+  ,a4paper          % Papiergrösse
+% ,twoside          % Zweiseitiger Druck (rechts/links)
+% ,10pt             % Schriftgrösse
+%  ,11pt
+  ,12pt
+  ,pdftex
+%  ,disable         % Todo-Markierungen auschalten
+]{report}
+
+% Codierung der Dateien auswählen:
+% \usepackage[latin1]{inputenc}    % Für UNIX mit ISO-LATIN-codierten Dateien
+% \usepackage[applemac]{inputenc}  % Für Apple MacOS
+% \usepackage[ansinew]{inputenc}   % Für Microsoft Windows
+\usepackage[utf8]{inputenc}        % UTF-8 codierte Dateien, Unix
+
+\usepackage{bericht}
+\usepackage[document]{ragged2e}
+\usepackage{scrlayer-scrpage}
+\usepackage{titlesec}
+\usepackage{setspace}
+\usepackage[backend=bibtex,style=numeric-comp,sorting=none]{biblatex}
+\usepackage{makecell}
+\usepackage{diagbox}
+\setlength\bibitemsep{1.5\itemsep}
+\addbibresource{bericht.bib}
+
+%% ACHTUNG, wenn man eine eigene Formatdatei (bericht.fmt) benutzt, werden Änderungen an bericht.sty
+%% erst wirksam, wenn die Format-Datei neu erzeugt wurde!
+%% (Genauer: Alle Änderungen, die textuell vor der nächsten Zeile ".... endofdump...." stehen
+%% werden erst wirksam, wenn die Formatdatei neu erzeugt wurde)
+\csname endofdump\endcsname
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Angaben zur Arbeit
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newcommand{\Autor}{Nadine Weiß und Manuel Berg}
+\newcommand{\MatrikelNummer}{5931590}
+\newcommand{\Kursbezeichnung}{TINF19B5}
+
+\newcommand{\FirmenName}{EnBW Energie Baden-Württemberg AG}
+\newcommand{\FirmenStadt}{Durlacher Allee 93, 76131 Karlsruhe}
+\newcommand{\FirmenLogoDeckblatt}{\includegraphics[width=6cm]{enbw}}
+
+\newcommand{\BetreuerFirma}{Andreas Adler, Roman Walz}
+%\newcommand{\BetreuerDHBW}{Titel Vorname Nachname}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Wird auf dem Deckblatt und in der Erklärung benutzt:
+\newcommand{\Was}{Programmentwurf}
+%\newcommand{\Was}{Studienarbeit}
+%\newcommand{\Was}{Bachleorarbeit}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newcommand{\Titel}{\enquote{Mensch ärgere Dich nicht}}
+
+\newcommand{\AbgabeDatum}{31.\,05.\,2022}
+
+%\newcommand{\Dauer}{12 Wochen}
+
+%\newcommand{\Abschluss}{Bachelor of Science}
+
+\newcommand{\Studiengang}{Informatik}
+
+\newcommand{\Studiengangsleiter}{Maurice Müller}
+
+\newcommand{\uproman}[1]{\uppercase\expandafter{\romannumeral#1}}
+% Befehl für grosse römische Zahlen
+
+\newcommand{\abkspace}{\hspace{1.2cm}}
+
+\newcommand{\myemph}[1]{\textbf{\texttt{#1}}}
+
+\definecolor{light-gray}{gray}{0.85}
+%\definecolor{eclipseBlue}{RGB}{42,0.0,255}
+%\definecolor{eclipseGreen}{RGB}{63,127,95}
+%\definecolor{eclipsePurple}{RGB}{127,0,85}
+
+\hypersetup{%%
+  pdfauthor={Manuel Berg},
+  pdftitle={Vorlesungsprotokoll},
+  pdfsubject={Theoretische Grundlagen der Kommunikation}
+}
+
+%\setcounter{secnumdepth}{3}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Wenn \includeonly{..} benutzt wird, werden nur diese Kaptitel ausgegeben.
+\includeonly{
+  abk
+ ,kapitel1
+ ,kapitel2
+ ,kapitel3
+ ,kapitel4
+ ,kapitel5
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Benutzt man das "biblatex"-Paket, dann muss das hier stehen:
+% siehe auch die mit BIBLATEX markierten Zeilen in bericht.sty
+%\addbibresource{bericht.bib}
+
+\begin{document}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{titlepage}
+\begin{center}
+\vspace*{-2cm}
+\hfill\includegraphics[width=4.5cm]{dhbw-logo}\\[2cm]
+{\Huge \Titel}\\[1.5cm]
+{\Huge\scshape \Was}\\[1.5cm]
+{\large in der Vorlesung \glqq Advanced Software Engineering\grqq}\\[0.5cm]
+{\large im fünften und sechsten Semester}\\[0.5cm]
+{\large des Studienganges \Studiengang}\\[0.5cm]
+{\large an der}\\[0.5cm]
+{\large Dualen Hochschule Baden-Württemberg Karlsruhe}\\[0.5cm]
+{\large von}\\[0.5cm]
+{\large\bfseries \Autor}\\[1cm]
+{\large \AbgabeDatum}
+\vfill
+\end{center}
+\begin{tabular}{l@{\hspace{2cm}}l}
+%Bearbeitungszeitraum	         & \Dauer 			\\
+Matrikelnummern	                 & \MatrikelNummer		\\
+Kurs			         & \Kursbezeichnung		\\
+%Ausbildungsbetrieb	         & \FirmenName			\\
+			         %& \FirmenStadt			\\
+%Betreuer des Ausbildungsbetriebes	 & \BetreuerFirma		\\
+%Gutachter der dualen Hochschule	 & \BetreuerDHBW		\\
+Dozent	 & \Studiengangsleiter		\\
+\end{tabular}
+\end{titlepage}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\input{erklaerung.tex}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\justify
+%\vspace*{-6cm}
+%\begin{abstract}
+%\thispagestyle{plain}
+%\setcounter{page}{4}
+%Das Thema der Projektarbeit ist die Einführung eines Intranets mit Anbindung an Informationsbildschirme innerhalb der kritischen Infrastruktur der Gesellschaft für nukleares Reststoffrecycling mbH (\acs{GNR}). Um dies zu ermöglichen, ist zunächst eine genaue Analyse der Rahmenbedingungen notwendig. Das grobe Lastenheft, welches zum Beginn der Projektarbeit vorliegt, muss in Absprache mit der Geschäftsführung der \acs{GNR} unter Berücksichtigung technischer Möglichkeiten verfeinert werden. Im Rahmen eines ausführ\-lichen Produktvergleiches sollen die am Markt verfügbaren Optionen aufgezeigt werden, unter denen abgewogen werden muss. Ein zentraler Aspekt der gesamten Projektarbeit ist, dass das Intranet eine einfache und übersichtliche Möglichkeit zur redaktionellen Pflege der Inhalte bieten soll. Falls sich bei dem gewählten Produkt mehrere mögliche Implementierungsvarianten anbieten, so soll eine Empfehlung unter Berücksichtigung des besonderen Anwendungsfalls bei der \acs{GNR} ausgesprochen werden. Für die Informationsbildschirme an den Standorten der \acs{GNR} ist gemäß dem Lastenheft eine gesonderte Intranet-Seite aufzubauen. Das gesamte Projekt ist weitestmöglich in den Produktivbetrieb zu überführen, sofern es die informationstechnischen Sicherheitsprüfungen und der eventuelle Einsatz von Fremdpersonal zeitlich zulassen.\\
+%
+%\vspace{0.5cm}
+%\begin{center}
+%\textbf{Abstract}
+%\end{center}
+%The topic of this project is the introduction of an intranet with connection to information monitors within the critical infrastrucure given at \acs{GNR}. In order to achieve this, it is necessary to thoroughly analyse the general conditions of the present environment. The vague requirement specification which exists upon the start of this project has to be refined in consultation with the executive board of \acs{GNR}, keeping the technical possibilities in mind. An extensive comparison of the available products will be conducted. One key aspect of the whole project is that the intranet should offer an easy and comprehensible way to allow editorial maintenance. Should the chosen product offer multiple variants of implementation, a decision should be made considering the special use case at \acs{GNR}. According to the requirement specification, a separate intranet page for the information monitors will be built. The whole project is to be implemented as far as the IT security guidelines and the possible hiring of external staff allow it.
+%
+%\end{abstract}
+
+\newpage
+\pagestyle{scrheadings}
+\clearscrheadfoot
+\pagenumbering{Roman}
+\setcounter{page}{4}
+\ofoot[\pagemark]{\pagemark}
+\pdfbookmark[section]{\contentsname}{toc}
+\tableofcontents           % Inhaltsverzeichnis hier ausgeben
+\listoffigures             % Liste der Abbildungen
+\addcontentsline{toc}{chapter}{\listfigurename}
+\listoftables              % Liste der Tabellen
+\addcontentsline{toc}{chapter}{\listtablename}
+%\lstlistoflistings         % Liste der Listings
+%\listofequations           % Liste der Formeln
+
+% Jetzt kommt der "eigentliche" Text
+\include{abk}              % Abkürzungsverzeichnis
+\include{kapitel1}
+\include{kapitel2}
+\include{kapitel3}
+\include{kapitel4}
+\include{kapitel5}
+%\include{kapitel6}
+%\include{kapitel7}
+\renewcommand{\bibname}{}
+\clearscrheadfoot
+\pagenumbering{Roman}
+\setcounter{page}{9}
+\ofoot[\pagemark]{\pagemark}
+\vspace*{2.4cm}
+\huge\textbf{Literaturverzeichnis}
+\phantomsection
+\addcontentsline{toc}{chapter}{Literaturverzeichnis}
+\vspace*{.7cm}
+\printbibliography[heading=none]
+
+% Ab hier beginnt der Anhang
+%\appendix
+%\addcontentsline{toc}{chapter}{Anhang}
+%
+%\addcontentsline{toc}{chapter}{Index}
+%\printindex
+%
+%\addcontentsline{toc}{chapter}{Literaturverzeichnis}
+
+% Hat man das "biblatex"-Paket nicht installiert, benutzt man folgendes:
+% Ohne das "biblatex"-Paket (s. bericht.sty) produziert folgendes
+% "deutsche" Zitate in Literaturverzeichnissen gemaß der Norm DIN 1505,
+% Teil 2 vom Jan. 1984.
+% Die Zitatmarken werden alphabetisch nach Verfassern
+% sortiert und sind durch abgekürzte Verfasserbuchstaben plus
+% Erscheinungsjahr in eckigen Klammern gekennzeichnet.
+
+% \bibliographystyle{alphadin}
+% \bibliography{bericht}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%5
+% BIBLATEX
+% Benutzt man das "biblatex"-Paket, muss man folgendes schreiben:
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%5
+
+
+%\include{changelog}
+
+%\newpage
+%\addcontentsline{toc}{chapter}{Liste der ToDo's}
+%\listoftodos[Liste der ToDo's]
+
+
+\end{document}
