@@ -31,7 +31,7 @@ UML der Klasse und Analyse der Abhängigkeiten in beide Richtungen (d.h., von we
 ab und wer hängt von der Klasse ab) in Bezug auf die Dependency Rule]}
 
 \subsubsection{Positiv-Beispiel: Dependency Rule}
-\noindent Die Klasse \emph{Graph} befindet sich in der Adapters-Schicht und realisiert die Knoten und Kanten des Spielfeldes. Da dies nur die Struktur des Spielfeldes enthält und in keinster Weise mit Spielständen zu tun hat, sind keine Abhängigkeiten in Richtung äußerer Schichten enthalten.
+\noindent Die Klasse \emph{Graph} befindet sich in der Domain Code-Schicht und realisiert die Knoten und Kanten des Spielfeldes. Da dies nur die Struktur des Spielfeldes enthält und in keinster Weise mit Spielständen zu tun hat, sind keine Abhängigkeiten in Richtung äußerer Schichten enthalten.
 
 \newpage
 \noindent
@@ -66,13 +66,24 @@ ab und wer hängt von der Klasse ab) in Bezug auf die Dependency Rule]}
 (ggf. auch zusammenspielenden Klassen), Beschreibung der Aufgabe, Einordnung mit Begründung in
 die Clean-Architecture]}
 
-\subsubsection{Schicht: Adapters}
+\subsubsection{Schicht: Domain Code}
 \begin{figure}[htbp]
 \centering
 \centerline{\includegraphics[scale=.35]{node}}
-\caption{Klasse der Adapters-Schicht [Eigene Darstellung aus \emph{IntelliJ}]}
-\label{fig:dependencyrulenegativ}
+\caption{Klasse der Domain Code-Schicht [Eigene Darstellung aus \emph{IntelliJ}]}
+\label{fig:klassedomaincodeschicht}
 \end{figure}
-\noindent Sie Klasse \emph{Node} entspricht einem Spielfeld bei \emph{Mensch ärgere Dich nicht}. Jedes Feld, welches von einer Spielfigur besetzt werden kann, wird durch diese Klasse einem Feldtypen zugeordnet. 
+\noindent Die Klasse \emph{Node} entspricht einem Spielfeld bei \emph{Mensch ärgere Dich nicht}. Jedes Feld, welches von einer Spielfigur besetzt werden kann, wird durch diese Klasse einem Feldtypen zugeordnet. Dies kann beispielsweise ein rotes Zielfeld oder auch ein grünes Startfeld sein. Außerdem enthält die Klasse eine Liste von Kanten, die ausgehend von diesem Knoten eine Verbindung zu einem anderen Knoten darstellen. In \hyperref[fig:klasseadomaincodeschicht]{obiger Abbildung} ist auch zu sehen, dass es Standardkanten und Spezialkanten gibt. Erstere können durch jede Spielfigur unabhängig von der Farbe befahren werden. Die Spezialkanten wiederum sind nur durch eine spezielle Farbe nutzbar. Das sind die vier Kanten, die zu den Zielfeldern zeigen.
 
-\subsubsection{Schicht: [Name]}
+Die Klasse \emph{Node} gehört zum inneren Kern der Anwendung und ist unabhängig vom Spielbetrieb. Die grundlegende Logik hinter dem Spielbrett mit den genannten Knoten und Kanten ändert sich nie. Gemäß den Vorlesungsinhalten handelt es sich deshalb um ein Teil der Domain Code-Schicht.
+\newpage
+\subsubsection{Schicht: Application Code}
+\begin{figure}[htbp]
+\centering
+\centerline{\includegraphics[scale=.42]{gameservice}}
+\caption{Klasse der Application Code-Schicht [Eigene Darstellung aus \emph{IntelliJ}]}
+\label{fig:klasseapplicationcodeschicht}
+\end{figure}
+\noindent Die Klasse \emph{GameService} kümmert sich um das Spielgeschehen. Dabei weiß sie um die aktuell am Spiel teilnehmenden Farben. Die Klasse kann ausgeben, wo sich eine Spielfigur nach einer gegebenen Augenzahl durch Würfeln befindet. Außerdem führt sie den Prozess des Würfelns durch Generierung von Zufallszahlen aus. Auch kann sie einen Zug durchführen, ein neues Spiel starten und bestimmen, welcher Spieler gerade an der Reihe ist. Die Klasse ist an der Implementierung des Observer-Patterns beteiligt. Sie reagiert dadurch auf Änderungen in der \acs{GUI}.
+
+Die im vorherigen Abschnitt genannten Funktionen entsprechen anwendungsspezifischer Geschäftslogik. Deswegen wird dieser Klasse der Application Code-Schicht zugeordnet.
