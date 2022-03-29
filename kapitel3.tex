@@ -73,14 +73,36 @@ sinnvoll/welches Problem gab es? Falls nicht erfüllt: wie könnte man es lösen
 Die Methoden werden immer über das \emph{ControlMechanismInterface} aufgerufen. Das bedeutet, ohne Änderungen an diesem kann das Verhalten wie oben dargestellt erweitert werden. Die OCP-Regel der verschlossenen Module gegenüber Modifikationen ist hierdurch erfüllt.
 
 \subsubsection{Negativ-Beispiel}
+\begin{figure}[htbp]
+\centering
+\centerline{\includegraphics[scale=.6]{negativbeispiel_ocp}}
+\caption{Negativ-Beispiel OCP [Eigene Darstellung aus \emph{IntelliJ}]}
+\label{fig:negativbeispiel_ocp}
+\end{figure}
+\noindent ToDo: Negativ-Beispiel, weil wir hier nicht auf andere Spieleranzahlen erweitern können (Grafik)
 
+\newpage
 \section{Analyse LSP/ISP/DIP (2P)}
 \emph{[Jeweils eine Klasse als positives und negatives Beispiel für entweder LSP oder ISP oder DIP); jeweils
-UML der Klasse und Begründung, warum man hier das Prinzip erfüllt/nicht erfüllt wird]}
-\\
-\\
-\emph{[Anm.: es darf nur ein Prinzip ausgewählt werden; es darf NICHT z.B. ein positives Beispiel für LSP
-und ein negatives Beispiel für ISP genommen werden]}
+UML der Klasse und Begründung, warum hier das Prinzip erfüllt/nicht erfüllt wird. Anm.: es darf nur ein Prinzip ausgewählt werden; es darf NICHT z.B. ein positives Beispiel für LSP und ein negatives Beispiel für ISP genommen werden]}
 
-\subsubsection{Positiv-Beispiel}
-\subsubsection{Negativ-Beispiel}
+\subsubsection{Positiv-Beispiel DIP}
+\begin{figure}[htbp]
+\centering
+\centerline{\includegraphics[scale=.45]{positivbeispiel_dip}}
+\caption{Positiv-Beispiel DIP [Eigene Darstellung aus \emph{IntelliJ}]}
+\label{fig:positivbeispiel_dip}
+\end{figure}
+\noindent Durch die Abstraktion des Spielbretts wird das Dependency Inversion Principle erfüllt, denn hier hängen die Details von Abstraktionen ab. In \hyperref[fig:positivbeispiel_dip]{Abbildung 3.5} ist zu erkennen, dass die Details -- also die konkreten Implementierungen -- in der Klasse \emph{BoardFour} zu finden sind.
+
+\newpage 
+\noindent Der Methodenaufruf beim Spielbrett ändert sich demnach nicht, wenn die konkrete Implementierung verändert wird. Beispielsweise könnte auch ein weiteres Spielbrett umgesetzt werden, ohne dass sich am restlichen Programm etwas ändert.
+
+\subsubsection{Negativ-Beispiel DIP}
+\begin{figure}[htbp]
+\centering
+\centerline{\includegraphics[scale=.6]{negativbeispiel_dip}}
+\caption{Negativ-Beispiel DIP [Eigene Darstellung aus \emph{IntelliJ}]}
+\label{fig:negativbeispiel_dip}
+\end{figure}
+\noindent Der \emph{ControlMechanism} steht in direkter Abhängigkeit der Klasse \emph{Algorithm}. Falls sich die Implementierung letzterer ändert, so muss auch \emph{AbstractControlMechanism} entsprechend angepasst werden. In dieser Zusammenstellung kann nur der vorhandene Algorithmus angewandt werden. Um dies zu umgehen und weitere Algorithmen verwenden zu können, wäre ein Interface sinnvoll.
