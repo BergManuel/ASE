@@ -23,14 +23,55 @@ Beschreibung der Aufgabe bzw. der Aufgaben und möglicher Lösungsweg des Negati
 UML)]}
 
 \subsubsection{Positiv-Beispiel}
+\begin{figure}[htbp]
+\centering
+\centerline{\includegraphics[scale=.6]{positivbeispiel_srp}}
+\caption{Positiv-Beispiel SRP [Eigene Darstellung aus \emph{IntelliJ}]}
+\label{fig:positivbeispiel_srp}
+\end{figure}
+\noindent Die Klasse \emph{Field} stellt als einzige Aufgabe ein Spielfeld dar. Dieses kann einem Typen zugeordnet sein, und optional eine Spielfigur enthalten. Durch einen Methodenaufruf wird zurückgegeben, ob sich eine Spielfigur auf dem entsprechenden Feld befindet. Das Single Responsibility Principle wird durch die hier dargestellte Klasse nicht verletzt.
+
 \subsubsection{Negativ-Beispiel}
+\begin{figure}[htbp]
+\centering
+\centerline{\includegraphics[scale=.6]{negativbeispiel_srp}}
+\caption{Negativ-Beispiel SRP [Eigene Darstellung aus \emph{IntelliJ}]}
+\label{fig:negativbeispiel_srp}
+\end{figure}
+\newpage
+\noindent Die Klasse \emph{ControlMechanismFour} ist dafür verantwortlich, 
+\begin{itemize}
+\item mögliche Züge zu berechnen,
+\item zu prüfen, ob ein Spieler bereits gewonnen hat,
+\item zu prüfen, ob ein Spieler nochmals würfeln darf und
+\item zu prüfen, ob ein Spieler überhaupt einen Zug durchführen kann.
+\end{itemize}
+
+
+\noindent Es wird deutlich, dass die Klasse für mehrere Tätigkeiten verantworlich ist und somit das Single Responsibility Principle verletzt wird. Um das Prinzip einhalten zu können, sollte der Umfang der Klasse auf die Erfüllung einer einzigen Aufgabe reduziert werden. Hierzu könnte \emph{ControlMechanismFour} in zwei neue Klassen aufgeteilt werden. Dabei wäre eine Klasse für die Berechnung der Züge verantworlich; die andere prüft das weitere mögliche Vorgehen eines Spielers. 
+
+Außerdem enthält \emph{ControlMechanismFour} sieben private Methoden, welche in eine Hilfsklasse ausgelagert werden sollten. Diese privaten Methoden sind in \hyperref[fig:negativbeispiel_srp]{Abbildung 3.2} mit roten Schloss-Symbolen gekennzeichnet. Eine Auslagerung ist sinnvoll, weil die Methoden nicht nur in \emph{ControlMechanismFour} Verwendung finden, sondern auch in anderen Klassen (wie beispielsweise in der \emph{Graph}-Klasse) aufgerufen werden. Hierdurch wird redundanter Quellcode eingespart.
+
+\newpage
+\noindent
 
 \section{Analyse OCP (3P)}
 \emph{[Jeweils eine Klasse als positives und negatives Beispiel für OCP; jeweils UML der Klasse und
 Analyse mit Begründung, warum das OCP erfüllt/nicht erfüllt wurde – falls erfüllt: warum hier
 sinnvoll/welches Problem gab es? Falls nicht erfüllt: wie könnte man es lösen (inkl. UML)?]}
-
 \subsubsection{Positiv-Beispiel}
+\begin{figure}[htbp]
+\centering
+\centerline{\includegraphics[scale=.5]{positivbeispiel_ocp}}
+\caption{Positiv-Beispiel OCP [Eigene Darstellung aus \emph{IntelliJ}]}
+\label{fig:positivbeispiel_ocp}
+\end{figure}
+\noindent Der \emph{ControlMechanism} ist offen für Erweiterungen bezüglich der Spieleranzahl. Dies wurde so entwickelt, da eine Abweichung von der Spielerzahl vier (z.B. Erhöhung auf sechs Spieler) eine optionale Anforderung des Projektes ist.
+\newpage
+\noindent Um beispielsweise einen \emph{ControlMechanism} für sechs Spieler umzusetzen, muss analog zur Klasse \emph{ControlMechanismFour} eine Klasse \emph{ControlMechanismSix} implementiert werden. Diese würde dann auch von \emph{AbstractControlMechanism} erben. 
+
+Die Methoden werden immer über das \emph{ControlMechanismInterface} aufgerufen. Das bedeutet, ohne Änderungen an diesem kann das Verhalten wie oben dargestellt erweitert werden. Die OCP-Regel der verschlossenen Module gegenüber Modifikationen ist hierdurch erfüllt.
+
 \subsubsection{Negativ-Beispiel}
 
 \section{Analyse LSP/ISP/DIP (2P)}
