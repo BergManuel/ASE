@@ -48,7 +48,7 @@ ab und wer hängt von der Klasse ab) in Bezug auf die Dependency Rule]}
 \noindent
 
 \subsubsection{Negativ-Beispiel: Dependency Rule}
-\noindent Bei der Klasse \emph{GameService} handelt es sich um Application Code, denn die Klasse kümmert sich um einen reibungslosen Spielablauf. Deshalb sollten hier auch grundsätzlich keine Abhängigkeiten auf die \acs{GUI} vorhanden sein.
+\noindent Bei der Klasse \emph{GameService} handelt es sich um Application Code, denn die Klasse kümmert sich um einen reibungslosen Spielablauf. Deshalb sollten hier auch grundsätzlich keine Abhängigkeiten auf die GUI vorhanden sein.
 
 \begin{figure}[htbp]
 \centering
@@ -57,7 +57,7 @@ ab und wer hängt von der Klasse ab) in Bezug auf die Dependency Rule]}
 \label{fig:dependencyrulenegativ}
 \end{figure}
 
-\noindent In \hyperref[fig:dependencyrulepositiv]{Abbildung 2.2} ist zu erkennen, dass die \emph{GameService}-Klasse Abhängigkeiten in Richtung der Klassen des Packages \emph{visualization} aufweist. Die Klassen dieses Packages sind verantwortlich für die \acs{GUI} und gehören somit zu äußersten Schicht. Aus diesem Grund liegt hier ein Negativ-Beispiel vor.
+\noindent In \hyperref[fig:dependencyrulepositiv]{Abbildung 2.2} ist zu erkennen, dass die \emph{GameService}-Klasse Abhängigkeiten in Richtung der Klassen des Packages \emph{visualization} aufweist. Die Klassen dieses Packages sind verantwortlich für die GUI und gehören somit zu äußersten Schicht. Aus diesem Grund liegt hier ein Negativ-Beispiel vor.
 
 \newpage
 
@@ -69,7 +69,7 @@ die Clean-Architecture]}
 \subsubsection{Schicht: Domain Code}
 \begin{figure}[htbp]
 \centering
-\centerline{\includegraphics[scale=.35]{node}}
+\centerline{\includegraphics[scale=.6]{node}}
 \caption{Klasse der Domain Code-Schicht [Eigene Darstellung aus \emph{IntelliJ}]}
 \label{fig:klassedomaincodeschicht}
 \end{figure}
@@ -80,10 +80,10 @@ Die Klasse \emph{Node} gehört zum inneren Kern der Anwendung und ist unabhängi
 \subsubsection{Schicht: Application Code}
 \begin{figure}[htbp]
 \centering
-\centerline{\includegraphics[scale=.42]{gameservice}}
+\centerline{\includegraphics[scale=.55]{gameservice}}
 \caption{Klasse der Application Code-Schicht [Eigene Darstellung aus \emph{IntelliJ}]}
 \label{fig:klasseapplicationcodeschicht}
 \end{figure}
-\noindent Die Klasse \emph{GameService} kümmert sich um das Spielgeschehen. Dabei weiß sie um die aktuell am Spiel teilnehmenden Farben. Die Klasse kann ausgeben, wo sich eine Spielfigur nach einer gegebenen Augenzahl durch Würfeln befindet. Außerdem führt sie den Prozess des Würfelns durch Generierung von Zufallszahlen aus. Auch kann sie einen Zug durchführen, ein neues Spiel starten und bestimmen, welcher Spieler gerade an der Reihe ist. Die Klasse ist an der Implementierung des Observer-Patterns beteiligt. Sie reagiert dadurch auf Änderungen in der \acs{GUI}.
+\noindent Die Klasse \emph{GameService} kümmert sich um das Spielgeschehen. Dabei weiß sie um die aktuell am Spiel teilnehmenden Farben. Die Klasse kann ausgeben, wo sich eine Spielfigur nach einer gegebenen Augenzahl durch Würfeln befindet. Außerdem führt sie den Prozess des Würfelns durch Generierung von Zufallszahlen aus. Auch kann sie einen Zug durchführen, ein neues Spiel starten und bestimmen, welcher Spieler gerade an der Reihe ist. Die Klasse ist an der Implementierung des Observer-Patterns beteiligt. Sie reagiert dadurch auf Änderungen in der GUI.
 
 Die im vorherigen Abschnitt genannten Funktionen entsprechen anwendungsspezifischer Geschäftslogik. Deswegen wird dieser Klasse der Application Code-Schicht zugeordnet.

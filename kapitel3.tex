@@ -31,14 +31,15 @@ UML)]}
 \end{figure}
 \noindent Die Klasse \emph{Field} stellt als einzige Aufgabe ein Spielfeld dar. Dieses kann einem Typen zugeordnet sein, und optional eine Spielfigur enthalten. Durch einen Methodenaufruf wird zurückgegeben, ob sich eine Spielfigur auf dem entsprechenden Feld befindet. Das Single Responsibility Principle wird durch die hier dargestellte Klasse nicht verletzt.
 
+\newpage
 \subsubsection{Negativ-Beispiel}
 \begin{figure}[htbp]
 \centering
-\centerline{\includegraphics[scale=.6]{negativbeispiel_srp}}
+\centerline{\includegraphics[scale=.6]{negativbeispiel_srp_alt}}
 \caption{Negativ-Beispiel SRP [Eigene Darstellung aus \emph{IntelliJ}]}
 \label{fig:negativbeispiel_srp}
 \end{figure}
-\newpage
+
 \noindent Die Klasse \emph{ControlMechanismFour} ist dafür verantwortlich, 
 \begin{itemize}
 \item mögliche Züge zu berechnen,
@@ -48,9 +49,7 @@ UML)]}
 \end{itemize}
 
 
-\noindent Es wird deutlich, dass die Klasse für mehrere Tätigkeiten verantworlich ist und somit das Single Responsibility Principle verletzt wird. Um das Prinzip einhalten zu können, sollte der Umfang der Klasse auf die Erfüllung einer einzigen Aufgabe reduziert werden. Hierzu könnte \emph{ControlMechanismFour} in zwei neue Klassen aufgeteilt werden. Dabei wäre eine Klasse für die Berechnung der Züge verantworlich; die andere prüft das weitere mögliche Vorgehen eines Spielers. 
-
-Außerdem enthält \emph{ControlMechanismFour} sieben private Methoden, welche in eine Hilfsklasse ausgelagert werden sollten. Diese privaten Methoden sind in \hyperref[fig:negativbeispiel_srp]{Abbildung 3.2} mit roten Schloss-Symbolen gekennzeichnet. Eine Auslagerung ist sinnvoll, weil die Methoden nicht nur in \emph{ControlMechanismFour} Verwendung finden, sondern auch in anderen Klassen (wie beispielsweise in der \emph{Graph}-Klasse) aufgerufen werden. Hierdurch wird redundanter Quellcode eingespart.
+\noindent Es wird deutlich, dass die Klasse für mehrere Tätigkeiten verantworlich ist und somit das Single Responsibility Principle verletzt wird. Um das Prinzip einhalten zu können, sollte der Umfang der Klasse auf die Erfüllung einer einzigen Aufgabe reduziert werden. Hierzu könnte \emph{ControlMechanismFour} in zwei neue Klassen aufgeteilt werden. Dabei wäre eine Klasse für die Berechnung der Züge verantworlich; die andere prüft das weitere mögliche Vorgehen eines Spielers. Außerdem enthält \emph{ControlMechanismFour} sieben private Methoden, welche in eine Hilfsklasse ausgelagert werden sollten. Diese privaten Methoden sind in \hyperref[fig:negativbeispiel_srp]{Abbildung 3.2} mit roten Schloss-Symbolen gekennzeichnet. Eine Auslagerung ist sinnvoll, weil die Methoden nicht nur in \emph{ControlMechanismFour} Verwendung finden, sondern auch in anderen Klassen (wie beispielsweise in der \emph{Graph}-Klasse) aufgerufen werden. Hierdurch wird redundanter Quellcode eingespart. Der Code war bis zum Commit \textbf{\texttt{7ac8c518c06d50472cb3a9a94ea5a60faea3f09e}} vom 26.05.2022 wie hier dargestellt im Repository vorhanden. Danach wurde er refactored.
 
 \newpage
 \noindent
@@ -62,15 +61,18 @@ sinnvoll/welches Problem gab es? Falls nicht erfüllt: wie könnte man es lösen
 \subsubsection{Positiv-Beispiel}
 \begin{figure}[htbp]
 \centering
-\centerline{\includegraphics[scale=.5]{positivbeispiel_ocp}}
+\centerline{\includegraphics[scale=.55]{positivbeispiel_ocp}}
 \caption{Positiv-Beispiel OCP [Eigene Darstellung aus \emph{IntelliJ}]}
 \label{fig:positivbeispiel_ocp}
 \end{figure}
-\noindent Der \emph{ControlMechanism} ist offen für Erweiterungen bezüglich der Spieleranzahl. Dies wurde so entwickelt, da eine Abweichung von der Spielerzahl vier (z.B. Erhöhung auf sechs Spieler) eine optionale Anforderung des Projektes ist.
+
 \newpage
-\noindent Um beispielsweise einen \emph{ControlMechanism} für sechs Spieler umzusetzen, muss analog zur Klasse \emph{ControlMechanismFour} eine Klasse \emph{ControlMechanismSix} implementiert werden. Diese würde dann auch von \emph{AbstractControlMechanism} erben. 
+
+\noindent Der \emph{ControlMechanism} ist offen für Erweiterungen bezüglich der Spieleranzahl. Dies wurde so entwickelt, da eine Abweichung von der Spielerzahl vier (z.B. Erhöhung auf sechs Spieler) eine optionale Anforderung des Projektes ist. Um beispielsweise einen \emph{ControlMechanism} für sechs Spieler umzusetzen, muss analog zur Klasse \emph{ControlMechanismFour} eine Klasse \emph{ControlMechanismSix} implementiert werden. Diese würde dann auch von \emph{AbstractControlMechanism} erben. 
 
 Die Methoden werden immer über das \emph{ControlMechanismInterface} aufgerufen. Das bedeutet, ohne Änderungen an diesem kann das Verhalten wie oben dargestellt erweitert werden. Die OCP-Regel der verschlossenen Module gegenüber Modifikationen ist hierdurch erfüllt.
+
+\newpage
 
 \subsubsection{Negativ-Beispiel}
 \begin{figure}[htbp]
@@ -78,7 +80,7 @@ Die Methoden werden immer über das \emph{ControlMechanismInterface} aufgerufen.
 \caption{Negativ-Beispiel OCP [Eigene Darstellung aus \emph{IntelliJ}]}
 \label{fig:negativbeispiel_ocp}
 \end{figure}
-\noindent ToDo: Negativ-Beispiel, weil wir hier nicht auf andere Spieleranzahlen erweitern können (Grafik)
+\noindent Dies ist ein Negativ-Beispiel für OCP, weil hier gegensätzlich zum \emph{ControlMechanism} keine Erweiterung der Spieleranzahl möglich ist.
 
 \newpage
 \section{Analyse LSP/ISP/DIP (2P)}
@@ -92,7 +94,7 @@ UML der Klasse und Begründung, warum hier das Prinzip erfüllt/nicht erfüllt w
 \caption{Positiv-Beispiel DIP [Eigene Darstellung aus \emph{IntelliJ}]}
 \label{fig:positivbeispiel_dip}
 \end{figure}
-\noindent Durch die Abstraktion des Spielbretts wird das Dependency Inversion Principle erfüllt, denn hier hängen die Details von Abstraktionen ab. In \hyperref[fig:positivbeispiel_dip]{Abbildung 3.5} ist zu erkennen, dass die Details -- also die konkreten Implementierungen -- in der Klasse \emph{BoardFour} zu finden sind.
+\noindent Durch die Abstraktion des Spielbretts wird das Dependency Inversion Principle erfüllt, denn hier hängen die Details von Abstraktionen ab. Es ist zu erkennen, dass die Details -- also die konkreten Implementierungen -- in der Klasse \emph{BoardFour} zu finden sind.
 
 \newpage 
 \noindent Der Methodenaufruf beim Spielbrett ändert sich demnach nicht, wenn die konkrete Implementierung verändert wird. Beispielsweise könnte auch ein weiteres Spielbrett umgesetzt werden, ohne dass sich am restlichen Programm etwas ändert.

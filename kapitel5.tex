@@ -46,13 +46,13 @@ Bei der Erstellung der Tests wurde der Fokus auf die Kernfunktionalitäten geleg
 
 \newpage
 \section{ATRIP: Professional (1P)}
-\emph{[jeweils 1 positves und negatives Beispiele zu ‘Professional’; jeweils Code-Beispiel, Analyse und
+\emph{[jeweils 1 positves und negatives Beispiele zu \enquote{Professional}; jeweils Code-Beispiel, Analyse und
 Begründung, was professionell/nicht professionell an den Beispielen ist]}
 
 \begin{figure}[htbp]
 \centering
 \centerline{\includegraphics[scale=.5]{professional}}
-\caption{Positiv-Beispiel Professional}
+\caption{Positiv-Beispiel Professional [Eigene Darstellung aus \emph{IntelliJ}]}
 \label{fig:professional}
 \end{figure}
 
@@ -63,7 +63,7 @@ Begründung, was professionell/nicht professionell an den Beispielen ist]}
 \begin{figure}[htbp]
 \centering
 \centerline{\includegraphics[scale=.5]{notprofessional}}
-\caption{Negativ-Beispiel Professional}
+\caption{Negativ-Beispiel Professional [Eigene Darstellung aus \emph{IntelliJ}]}
 \label{fig:notprofessional}
 \end{figure}
 
@@ -79,7 +79,7 @@ Diagramm der Klasse]}
 \begin{figure}[htbp]
 \centering
 \centerline{\includegraphics[scale=.5]{boardfourmock}}
-\caption{BoardFourMock}
+\caption{BoardFourMock [Eigene Darstellung aus \emph{IntelliJ}]}
 \label{fig:boardfourmock}
 \end{figure}
 
@@ -91,7 +91,7 @@ Diagramm der Klasse]}
 \begin{figure}[htbp]
 \centering
 \centerline{\includegraphics[scale=.5]{gameframemock}}
-\caption{GameFrameMock}
+\caption{GameFrameMock [Eigene Darstellung aus \emph{IntelliJ}]}
 \label{fig:gameframemock}
 \end{figure}
 
@@ -113,12 +113,12 @@ Diagramm der Klasse]}
 \emph{[4 Beispiele für die Ubiquitous Language; jeweils Bezeichung, Bedeutung und kurze Begründung,
 warum es zur Ubiquitous Language gehört]}
 
-\begin{figure}[htbp]
+\begin{table}[htbp]
 \centering
 \centerline{\includegraphics[scale=.7]{ubiquitous}}
 \caption{4 Beispiele für die Ubiquitous Language}
-\label{fig:ubiquitous}
-\end{figure}
+\label{tab:ubiquitous}
+\end{table}
 
 % \begin{table}[htbp]
 % \centering
@@ -136,11 +136,24 @@ warum es zur Ubiquitous Language gehört]}
 %     \caption{4 Beispiele für die Ubiquitous Language}
 % \end{table}
 
+\newpage
+
 \section{Repositories (1,5P)}
 \emph{[UML, Beschreibung und Begründung des Einsatzes eines Repositories; falls kein Repository
 vorhanden: ausführliche Begründung, warum es keines geben kann/hier nicht sinnvoll ist]}
 
+\vspace{.4cm}
+
 \noindent Das Repository wird durch die Klasse \enquote{GameIO} repräsentiert und bietet Zugriff auf persistenten Speicher. Außerdem wird die konkret verwendete Speichertechnologie vor dem Domain Code verborgen. In unserem Beispiel ist es das Abspeichern und Laden von Spielständen, was mithilfe von JSON umgesetzt wird. Dadurch kann ein Spiel unterbrochen und später fortgesetzt werden.
+
+\begin{figure}[htbp]
+\centering
+\centerline{\includegraphics[scale=.6]{repo}}
+\caption{Repository [Eigene Darstellung aus \emph{IntelliJ}]}
+\label{fig:repo}
+\end{figure}
+
+\newpage
 
 \section{Aggregates (1,5P)}
 \emph{[UML, Beschreibung und Begründung des Einsatzes eines Aggregates; falls kein Aggregate
@@ -166,7 +179,7 @@ ausführliche Begründung, warum es keines geben kann/hier nicht sinnvoll ist]}
 \label{fig:entities}
 \end{figure}
 
-\noindent Jeder Player hat eine eindeutige Identität. Alle Spieler, die jemals teilgenommen haben, werden in einer JSON-Datei gespeichert und durch die \enquote{id} identifiziert. Dadurch kann auch die insgesamte Anzahl an Gewinnen abgespeichert werden. Anhand dieser sich über die Zeit verändernden Zahl \enquote{} ist zu erkennen, dass der \enquote{Player} veränderliche Eigenschaften und einen Lebenszyklus hat. 
+\noindent Jeder Player hat eine eindeutige Identität. Alle Spieler, die jemals teilgenommen haben, werden in einer JSON-Datei gespeichert und durch die \enquote{id} identifiziert. Dadurch kann auch die insgesamte Anzahl an Gewinnen abgespeichert werden. Anhand dieser sich über die Zeit verändernden Zahl \enquote{winCount} ist zu erkennen, dass der \enquote{Player} veränderliche Eigenschaften und einen Lebenszyklus hat. 
 
 Aufgrund der Anforderungen waren hier eine Identität und veränderliche Eigenschaften notwendig. Da dies Merkmale einer Entity sind war es hier sinnvoll den \enquote{Player} als eine solche zu implementieren.
 
@@ -270,13 +283,31 @@ Nach der Eliminierung des Code Smells sind nur noch die drei logischen Möglichk
 liefern; jeweils auf die Commits verweisen]}
 
 \subsubsection{Extract Method}
-\noindent Die Methode \enquote{saveGame} in der Klasse \enquote{GameIO} hat zuerst einen JSON-String erstellt und dann diesen mit dem aktuellen Zeitpunkt im Dateinamen abgespeichert. Beim Refactoring wurde hier einmal das Erstellen des JSON-Strings und das Generieren des aktuellen Zeitpunkts ausgelagert. Jetzt befindet sich nur noch der tatsächliche Abspeicherungsprozess in der Methode.
+\noindent Die Methode \enquote{saveGame} in der Klasse \enquote{GameIO} hat zuerst einen JSON-String erstellt und dann diesen mit dem aktuellen Zeitpunkt im Dateinamen abgespeichert. Beim Refactoring wurde hier einmal das Erstellen des JSON-Strings und das Generieren des aktuellen Zeitpunkts ausgelagert. Jetzt befindet sich nur noch der tatsächliche Abspeicherungsprozess in der Methode. Sichtbar war der alte Stand bis zum Commit \textbf{\texttt{aee0fe5f52b545c68111ffcfbef3e99b8f85caf8}} vom 27.05.2022.
 
 \begin{figure}[htbp]
 \centering
-\centerline{\includegraphics[scale=.5]{gameio1}}
+\centerline{\includegraphics[scale=.45]{gameio1}}
 \caption{Extract Method (vorher) [Eigene Darstellung aus \emph{IntelliJ}]}
 \label{fig:gameio1}
+\end{figure}
+
+\begin{figure}[htbp]
+\centering
+\centerline{\includegraphics[scale=.5]{gameio2}}
+\caption{Extract Method (nacher) [Eigene Darstellung aus \emph{IntelliJ}]}
+\label{fig:gameio2}
+\end{figure}
+
+\newpage
+\subsubsection{Rename Method}
+\noindent Bei diesem Refactoring wurde auf die einheitliche Ubiquitous Language umgestellt. Dies ist zum Beispiel bei der \emph{CalculateMove}-Methode im \emph{ControlMechanismInterface} der Fall. Hier stand in den Argumenten statt \emph{board} der Begriff \emph{field}. Sichtbar war der alte Stand bis zum Commit \textbf{\texttt{aee0fe5f52b545c68111ffcfbef3e99b8f85caf8}} vom 27.05.2022.
+
+\begin{figure}[htbp]
+\centering
+\centerline{\includegraphics[scale=.6]{renamemethod}}
+\caption{Rename Method [Eigene Darstellung aus \emph{IntelliJ}]}
+\label{fig:renamemethod}
 \end{figure}
 
 \newpage
@@ -296,8 +327,19 @@ liefern; jeweils auf die Commits verweisen]}
 \emph{[2 unterschiedliche Entwurfsmuster aus der Vorlesung (oder nach Absprache auch andere) jeweils
 sinnvoll einsetzen, begründen und UML-Diagramm]}
 
-\subsubsection{Entwurfsmuster: [Name] (4P)}
-\subsubsection{Entwurfsmuster: [Name] (4P)}
+\subsubsection{Entwurfsmuster: Singleton (4P)}
+\noindent Der Graph ist ein Singleton-Enum und liegt sozusagen unter dem Spielbrett. Er besteht aus Knoten und gerichteten Kanten und gibt somit die Struktur wieder. Da der Graph von mehrerer Teilen des Systems verwendet wird und sich nie ändert, ist es hier nicht notwendig mehrere Instanzen des Graphen zu haben. Deswegen haben wir uns an dieser Stelle für das Singleton-Pattern entschieden.
+
+\begin{figure}[htbp]
+\centering
+\centerline{\includegraphics[scale=.5]{singleton}}
+\caption{Graph als Singleton-Enum [Eigene Darstellung aus \emph{IntelliJ}]}
+\label{fig:singleton}
+\end{figure}
+
+\newpage
+\subsubsection{Entwurfsmuster: Observer-Pattern (4P)}
+\noindent Das Observer-Pattern wurde eingesetzt, um eine lose Kopplung zwischen der Verwaltung des Spiels (\emph{GameService}-Klasse) und der Visualisierung (\emph{GameFrame}-Klasse) zu schaffen.
 
 \newpage
 \titlespacing*{\chapter}{0pt}{-30mm}{10pt}
@@ -305,6 +347,7 @@ sinnvoll einsetzen, begründen und UML-Diagramm]}
   {\normalfont\bfseries}{}{10pt}{\Huge\thechapter.\quad}
   
 \chapter{Anhang: Bedienungsanleitung}
+\label{ch:anleitung}
 \pagestyle{scrheadings}
 \clearscrheadfoot
 \pagenumbering{arabic}

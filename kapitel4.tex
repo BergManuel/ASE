@@ -28,7 +28,7 @@ Kopplung aufgelöst werden kann]}
 
 \begin{figure}[htbp]
 \centering
-\centerline{\includegraphics[scale=1]{grasp1}}
+\centerline{\includegraphics[scale=.45]{grasp1}}
 \caption{Positiv-Beispiel GRASP [Eigene Darstellung aus \emph{IntelliJ}]}
 \label{fig:grasp1}
 \end{figure}
@@ -48,12 +48,20 @@ Eine starke Kopplung liegt vor, da hier auf die konkrete \enquote{Algorithm}- Kl
 
 \newpage
 \section{Analyse GRASP: Hohe Kohäsion (2P)}
-\emph{[eine Klasse als positives Beispiel hoher Kohäsion; UML Diagramm und Begründung, warum die
-Kohäsion hoch ist]}
+\emph{[eine Klasse als positives Beispiel hoher Kohäsion; UML Diagramm und Begründung, warum die Kohäsion hoch ist]}
+
+\vspace{.4cm}
 
 \noindent Die Kohäsion erhöht sich, je mehr Verantwortlichkeiten und Teilaufgaben in andere Klassen ausgelagert sind. Ein Beispiel für hohe Kohäsion wäre hier der dem Spielfeld unterliegende Graph.
 
-\todo{Bild}
+\begin{figure}[htbp]
+\centering
+\centerline{\includegraphics[scale=.5]{grasp3}}
+\caption{GRASP: Hohe Kohäsion [Eigene Darstellung aus \emph{IntelliJ}]}
+\label{fig:grasp3}
+\end{figure}
+
+\newpage
 
 \noindent In der \enquote{Graph}-Klasse wird der Graph aufgebaut. Hierzu wurden aber nicht alle Verantwortlichkeiten in dieser Klasse belassen, sondern in vier weitere Klassen ausgelagert.
 
