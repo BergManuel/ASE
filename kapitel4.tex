@@ -12,7 +12,7 @@
 \pagestyle{scrheadings}
 \clearscrheadfoot
 \pagenumbering{arabic}
-\setcounter{page}{14}
+\setcounter{page}{15}
 \ofoot[\pagemark]{\pagemark}
 %\ohead[\headmark]{\headmark}
 \onehalfspacing
@@ -88,6 +88,4 @@ Eine starke Kopplung liegt vor, da hier auf die konkrete \enquote{Algorithm}- Kl
 
 \noindent In der \enquote{Graph}-Klasse waren früher alle vier Methoden, in der \enquote{AbstractBoard}-Klasse war nur die \enquote{getInitType}-Methode und in der \enquote{ControlMechanismFour}-Klasse waren ebenfalls alle vier Methoden vorhanden. Der Unterschied zum jetzigen Stand besteht darin, dass die Methoden mittlerweile statisch gemacht worden sind. Da sich innerhalb der Methode nichts verändert hat, sei hier der frühere Stand nicht als Codebeispiel aufgezeigt.
 
-Positiv ist, dass sich der Code durch das Eliminieren von Duplikaten reduziert hat. Außerdem ist aus den einzelnen Klassen Code, der nicht zu deren Verantwortlichkeiten gezählt hat, herausgenommen worden. 
-
-Die Klasse \enquote{GraphUtilities} existierte bis zu dem Commit \enquote{\texttt{Removed duplicated code to GraphUtilities}}.
+Positiv ist, dass sich der Code durch das Eliminieren von Duplikaten reduziert hat. Außerdem ist aus den einzelnen Klassen Code, der nicht zu deren Verantwortlichkeiten gezählt hat, herausgenommen worden. Die Klasse \enquote{GraphUtilities} existierte bis zu dem Commit \textbf{\texttt{75cf8293f43de67a5e087053f9a0e3cc762132a5}} vom 26.05.2022.
