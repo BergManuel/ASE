@@ -43,7 +43,7 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \newcommand{\Autor}{Nadine Weiß und Manuel Berg}
-\newcommand{\MatrikelNummer}{3196898, 5931590}
+\newcommand{\MatrikelNummer}{3196898 (Weiß), 5931590 (Berg)}
 \newcommand{\Kursbezeichnung}{TINF19B5}
 
 \newcommand{\FirmenName}{EnBW Energie Baden-Württemberg AG}
@@ -98,8 +98,7 @@
 
 % Wenn \includeonly{..} benutzt wird, werden nur diese Kaptitel ausgegeben.
 \includeonly{
-  abk
- ,kapitel1
+  kapitel1
  ,kapitel2
  ,kapitel3
  ,kapitel4
@@ -180,7 +179,7 @@ Dozent	 & \Studiengangsleiter		\\
 %\listofequations           % Liste der Formeln
 
 % Jetzt kommt der "eigentliche" Text
-\include{abk}              % Abkürzungsverzeichnis
+%\include{abk}              % Abkürzungsverzeichnis
 \include{kapitel1}
 \include{kapitel2}
 \include{kapitel3}
@@ -188,17 +187,17 @@ Dozent	 & \Studiengangsleiter		\\
 \include{kapitel5}
 %\include{kapitel6}
 %\include{kapitel7}
-\renewcommand{\bibname}{}
-\clearscrheadfoot
-\pagenumbering{Roman}
-\setcounter{page}{9}
-\ofoot[\pagemark]{\pagemark}
-\vspace*{2.4cm}
-\huge\textbf{Literaturverzeichnis}
-\phantomsection
-\addcontentsline{toc}{chapter}{Literaturverzeichnis}
-\vspace*{.7cm}
-\printbibliography[heading=none]
+% \renewcommand{\bibname}{}
+% \clearscrheadfoot
+% \pagenumbering{Roman}
+% \setcounter{page}{9}
+% \ofoot[\pagemark]{\pagemark}
+% \vspace*{2.4cm}
+% \huge\textbf{Literaturverzeichnis}
+% \phantomsection
+% \addcontentsline{toc}{chapter}{Literaturverzeichnis}
+% \vspace*{.7cm}
+% \printbibliography[heading=none]
 
 % Ab hier beginnt der Anhang
 %\appendix

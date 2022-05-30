@@ -12,7 +12,7 @@
 \pagestyle{scrheadings}
 \clearscrheadfoot
 \pagenumbering{arabic}
-\setcounter{page}{5}
+\setcounter{page}{20}
 \ofoot[\pagemark]{\pagemark}
 %\ohead[\headmark]{\headmark}
 \onehalfspacing
@@ -22,38 +22,78 @@
 
 \begin{table}[htbp]
 \centering
-    \begin{tabular}{|l|l|}
-        \hline
-        \textbf{Unit Test} & \textbf{Beschreibung} \\ \hline
-        ~         & ~            \\ \hline
-        ~         & ~            \\ \hline
-        ~         & ~            \\ \hline
-        ~         & ~            \\ \hline
-        ~         & ~            \\ \hline
-        ~         & ~            \\ \hline
-        ~         & ~            \\ \hline
-        ~         & ~            \\ \hline
-        ~         & ~            \\ \hline
-        ~         & ~            \\
-        \hline
-    \end{tabular}
-    \label{Tab:unit_test_table}
-    \caption{Übersicht der 10 Unit Tests}
+\centerline{\includegraphics[scale=.55]{unitteststable}}
+\caption{10 Unit Tests}
+\label{tab:unitteststable}
 \end{table}
 
 \section{ATRIP: Automatic (1P)}
 \emph{[Begründung/Erläuterung, wie ‘Automatic’ realisiert wurde]}
+\vspace{.4cm}
 
+\noindent Die Tests sind einfach auszuführen, denn es reicht auf dem Ordner, in dem alle Tests enthalten sind, das Starten aller Tests auszuwählen. Ein anderen Weg wäre das Ausführen des Befehls \textbf{\texttt{mvn clean test}}. Außerdem müssen bei keinem Test Daten manuell eingegeben werden. Somit laufen alle Tests automatisch ab. Des Weiteren überprüfen sich alle Tests selbst und geben als Ergebnis entweder bestanden oder fehlgeschlagen zurück.
+
+\newpage
 \section{ATRIP: Thorough (1P)}
 \emph{[Code Coverage im Projekt analysieren und begründen]}
+\vspace{.4cm}
 
+\noindent Die Code Coverage im Projekt ist leider eher dürftig. Es wurden zwar die Kernfunktionen mit Tests abgedeckt, aber dennoch fehlen auch einige Aspekte, die wir als notwendig bezeichnen würden. Zum Beispiel gibt es keinerlei Tests zur GUI. Diese wurde nur händisch getestet.
+
+Bei den Tests wurden einmal die möglichen Aktionen auf dem Spielbrett betrachtet. Hierzu zählen fünf ersten Tests aus der \hyperref[tab:unittesttable]{vorherigen Tabelle}. Außerdem wurde die dem Spielbrett zugrundeliegende Struktur, also der darunterliegende Graph, getestet. Hierbei sind aber auch nur cica 10\% des fertigen Graphen überprüft worden. Da dieser Graph zur Validierung von Zügen beisteuert ist dies eine kritische Stelle, die nicht mit Tests abgedeckt ist. Zum Schluss wurde dann noch der \enquote{GameService} mithilfe dreier Mocks getestet. Aber auch hier fehlt zum Beispiel die Überprüfung, ob ein neues Spiel richtig aufgebaut wird.
+
+Bei der Erstellung der Tests wurde der Fokus auf die Kernfunktionalitäten gelegt. Es wurde aber beim Auftritt eines Fehlers dieser im Code verbessert und nicht direkt ein Test geschrieben. Zukünftig sollte das anders gehandhabt und auch direkt das Umfeld des Fehlers betrachtet werden.
+
+\newpage
 \section{ATRIP: Professional (1P)}
 \emph{[jeweils 1 positves und negatives Beispiele zu ‘Professional’; jeweils Code-Beispiel, Analyse und
 Begründung, was professionell/nicht professionell an den Beispielen ist]}
 
+\begin{figure}[htbp]
+\centering
+\centerline{\includegraphics[scale=.5]{professional}}
+\caption{Positiv-Beispiel Professional}
+\label{fig:professional}
+\end{figure}
+
+\noindent Hier ist ein positives Beispiel zu \enquote{Professional} zu sehen. Es wird ein Mock für das Spielbrett eingesetzt. In der Testklasse werden verschiedene Aktionen beziehungsweise Funktionalitäten auf dem Spielbrett getestet. Hierbei wird der Code in der \enquote{beforeEachTest}-Methode wiederverwendet, was für \enquote{Professional} spricht. Hierdurch werden auch Fehlerquellen verkleinert, denn beispielsweise bei Änderungen muss hier nur eine Stelle im Code bedacht werden. Dies spricht auch für eine gute Code-Qualität.
+
+\newpage
+
+\begin{figure}[htbp]
+\centering
+\centerline{\includegraphics[scale=.5]{notprofessional}}
+\caption{Negativ-Beispiel Professional}
+\label{fig:notprofessional}
+\end{figure}
+
+\noindent Dieser Test überprüft, ob es tatsächlich nur eine Graph-Instanz gibt. Das ist aber sinnlos und ein Negativ-Beispiel zu \enquote{Professional}, da der Graph ein Singleton ist und somit nur eine Instanz existiert. 
+
 \section{Fakes und Mocks (1P)}
 \emph{[Analyse und Begründung des Einsatzes von 2 Fake/Mock-Objekten; zusätzlich jeweils UML
 Diagramm der Klasse]}
+
+\subsubsection{BoardFourMock}
+\noindent Dieses Mock ist stellvertretend für ein Spielbrett. Dabei wurden nur die notwendigen Funktionalitäten implementiert. Das heißt, es gibt einen festen Spielstand der sozusagen \enquote{initialisiert} wird. Bei diesem Spielstand wurden absichtlich die Spielfiguren so gestellt, dass die möglichen Aktionen gut getestet werden können. Zum Beispiel ist die Farbe Blau im Ziel und somit kann die Funktion, ob jemand gewonnen hat, überprüft werden. Ein anderen Beispiel ist, dass Rot noch auf der Startposition steht und somit überprüft werden kann, ob Rot auch dreimal würfeln darf.
+
+\begin{figure}[htbp]
+\centering
+\centerline{\includegraphics[scale=.5]{boardfourmock}}
+\caption{BoardFourMock}
+\label{fig:boardfourmock}
+\end{figure}
+
+
+\newpage
+\subsubsection{GameFrameMock}
+\noindent Das Mock \enquote{GameFrameMock} ist stellvertretend für die GUI da. Um den \enquote{GameService} ohne Abhängigkeiten testen zu können, wurden durch dieses Mock die minimal notwendigen Funktionalitäten geboten. Zum Beispiel konnte ohne die große GUI-Komponente mit einem akzeptablen Aufwand getestet werden, ob ein von der Visualisierung kommender valider Zug richtig weitergeleitet wird.
+
+\begin{figure}[htbp]
+\centering
+\centerline{\includegraphics[scale=.5]{gameframemock}}
+\caption{GameFrameMock}
+\label{fig:gameframemock}
+\end{figure}
 
 \newpage
 \titlespacing*{\chapter}{0pt}{-30mm}{10pt}
@@ -64,7 +104,7 @@ Diagramm der Klasse]}
 \pagestyle{scrheadings}
 \clearscrheadfoot
 \pagenumbering{arabic}
-\setcounter{page}{6}
+\setcounter{page}{25}
 \ofoot[\pagemark]{\pagemark}
 %\ohead[\headmark]{\headmark}
 \onehalfspacing
@@ -119,22 +159,41 @@ vorhanden: ausführliche Begründung, warum es keines geben kann/hier nicht sinn
 \emph{[UML, Beschreibung und Begründung des Einsatzes einer Entity; falls keine Entity vorhanden:
 ausführliche Begründung, warum es keines geben kann/hier nicht sinnvoll ist]}
 
-\noindent \textbf{ToDo: Player UUID}
+\begin{figure}[htbp]
+\centering
+\centerline{\includegraphics[scale=.6]{entities}}
+\caption{Entitiy Player [Eigene Darstellung aus \emph{IntelliJ}]}
+\label{fig:entities}
+\end{figure}
 
+\noindent Jeder Player hat eine eindeutige Identität. Alle Spieler, die jemals teilgenommen haben, werden in einer JSON-Datei gespeichert und durch die \enquote{id} identifiziert. Dadurch kann auch die insgesamte Anzahl an Gewinnen abgespeichert werden. Anhand dieser sich über die Zeit verändernden Zahl \enquote{} ist zu erkennen, dass der \enquote{Player} veränderliche Eigenschaften und einen Lebenszyklus hat. 
+
+Aufgrund der Anforderungen waren hier eine Identität und veränderliche Eigenschaften notwendig. Da dies Merkmale einer Entity sind war es hier sinnvoll den \enquote{Player} als eine solche zu implementieren.
+
+\newpage
 \section{Value Objects (1,5P)}
 \emph{[UML, Beschreibung und Begründung des Einsatzes eines Value Objects; falls kein Value Object
 vorhanden: ausführliche Begründung, warum es keines geben kann/hier nicht sinnvoll ist]}
 
 \begin{figure}[htbp]
 \centering
-\centerline{\includegraphics[scale=.6]{valueobject}}
-\caption{Value Object [Eigene Darstellung aus \emph{IntelliJ}]}
-\label{fig:valueobject}
+\centerline{\includegraphics[scale=.6]{valueobjects}}
+\caption{Enum als Value Object [Eigene Darstellung aus \emph{IntelliJ}]}
+\label{fig:valueobjects}
 \end{figure}
 
-\noindent Ein Value Object ist hier eine Spielfigur. Diese hat als Eigenschaft nur die Farbe, welche über den gesamten Zeitraum hinweg unveränderlich bleibt. Die Änderung der Farbe ist nur durch die Konstruktion eines neuen Objektes möglich. Die Spielfigur besitzt keine eigene Identität und es ist auch kein Lebenszyklus erkennbar.
+\noindent Ein Enum hat keine Identität, was auch auf Value Objects zutrifft. Außerdem sind Value Objects gleich, wenn sie denselben Wert haben. Dies lässt sich einfach durch \textbf{\texttt{Context.DICE.equals(Context.DICE)}}. Da dies wahr ist, trifft auch dieser Aspekt des ValueObject auf das \enquote{Context}-Enum zu. Des Weiteren haben ValueObjects keinen Lebenszyklkus, was auch hier passt. Da das \enquote{Context}-Enum keine Instanzvariablen besitzt ist es auch unveränderlich. Das bedeutet nicht alle Enums sind Value Objects, aber das hier gezeigte Enum ist eines.
 
-Bezüglich des \enquote{GamePiece} sind das Überschreiben von \enquote{equals()} und \enquote{hashCode()} sowie die weiteren Vorgaben aus der Vorlesung zur Implementierung von Value Objects in Java beachtet worden.
+% \begin{figure}[htbp]
+% \centering
+% \centerline{\includegraphics[scale=.6]{valueobject}}
+% \caption{Value Object [Eigene Darstellung aus \emph{IntelliJ}]}
+% \label{fig:valueobject}
+% \end{figure}
+
+% \noindent Ein Value Object ist hier eine Spielfigur. Diese hat als Eigenschaft nur die Farbe, welche über den gesamten Zeitraum hinweg unveränderlich bleibt. Die Änderung der Farbe ist nur durch die Konstruktion eines neuen Objektes möglich. Die Spielfigur besitzt keine eigene Identität und es ist auch kein Lebenszyklus erkennbar.
+
+% Bezüglich des \enquote{GamePiece} sind das Überschreiben von \enquote{equals()} und \enquote{hashCode()} sowie die weiteren Vorgaben aus der Vorlesung zur Implementierung von Value Objects in Java beachtet worden.
 
 \newpage
 \titlespacing*{\chapter}{0pt}{-30mm}{10pt}
@@ -145,7 +204,7 @@ Bezüglich des \enquote{GamePiece} sind das Überschreiben von \enquote{equals()
 \pagestyle{scrheadings}
 \clearscrheadfoot
 \pagenumbering{arabic}
-\setcounter{page}{7}
+\setcounter{page}{29}
 \ofoot[\pagemark]{\pagemark}
 %\ohead[\headmark]{\headmark}
 \onehalfspacing
@@ -196,7 +255,7 @@ Nach der Eliminierung des Code Smells sind nur noch die drei logischen Möglichk
 \label{fig:instanzvariablen}
 \end{figure}
 
-\noindent Außerdem wurden die vier Funktionalitäten aus den Graph-Utilities hinzugefügt:
+\noindent Außerdem wurden die vier Funktionalitäten aus den Graph-Utilities hinzugefügt, wie auf der nächsten Seite zu sehen ist.
 
 \begin{figure}[htbp]
 \centering
@@ -229,7 +288,7 @@ liefern; jeweils auf die Commits verweisen]}
 \pagestyle{scrheadings}
 \clearscrheadfoot
 \pagenumbering{arabic}
-\setcounter{page}{8}
+\setcounter{page}{35}
 \ofoot[\pagemark]{\pagemark}
 %\ohead[\headmark]{\headmark}
 \onehalfspacing
@@ -244,6 +303,73 @@ sinnvoll einsetzen, begründen und UML-Diagramm]}
 \titlespacing*{\chapter}{0pt}{-30mm}{10pt}
 \titleformat{\chapter}[display]
   {\normalfont\bfseries}{}{10pt}{\Huge\thechapter.\quad}
+  
+\chapter{Anhang: Bedienungsanleitung}
+\pagestyle{scrheadings}
+\clearscrheadfoot
+\pagenumbering{arabic}
+\setcounter{page}{36}
+\ofoot[\pagemark]{\pagemark}
+%\ohead[\headmark]{\headmark}
+\onehalfspacing
+
+\noindent Zu Beginn eines Spiels wird zunächst die Anzahl an Spielern angegeben. Hierbei kann zwischen 2, 3 oder 4 ausgewählt werden.
+
+\begin{figure}[htbp]
+\centering
+\centerline{\includegraphics[scale=.5]{anleitung1}}
+\caption{Auswahl der Spieleranzahl}
+\label{fig:anleitung1}
+\end{figure}
+
+\noindent Nachdem die Spieleranzahl ausgewählt wurde, wird als nächstes die Anzahl der durch den Algorithmus gespielten Spielern ausgewählt. Es können bis zu 3 Spieler als Algorithmus initialisiert werden.
+
+\begin{figure}[htbp]
+\centering
+\centerline{\includegraphics[scale=.5]{anleitung2}}
+\caption{Auswahl der Anzahl an simulierten Spielern}
+\label{fig:anleitung2}
+\end{figure}
+
+\noindent Im nächsten Schritt werden die nicht-algorithmischen Spieler festgelegt. Hierbei können Spielern deren Namen zugewiesen werden. Alternativ können auch bereits existierende Spieler ausgewählt werden. Im Folgenden wurde Spieler 1 als neuer Spieler unter dem Namen Nadine angelegt. Als Spieler 2 wurde ein bereits existierender Spieler ausgewählt.
+
+\newpage
+
+% \begin{figure}[htbp]
+% \centering
+% \centerline{\includegraphics[scale=.6]{anleitung3}}
+% \caption{Benennung der Spieler}
+% \label{fig:anleitung3}
+% \end{figure}
+
+\begin{figure}[htbp]
+\centering
+\centerline{\includegraphics[scale=.6]{anleitung4}}
+\caption{Benennung eines Spielers und Auswahl eines existierenden Spielers}
+\label{fig:anleitung4}
+\end{figure}
+
+\noindent Nachdem Abschließend OK ausgewählt wurde beginnt das Spiel. Jeder Spieler erhält 4 Spielfiguren einer Farbe. Alle 4 Figuren stehen zu Beginn eines Spiels auf dem Feld A seiner Farbe. Die jeweiligen Spieler werden unterhalb des Spielfeldes mit Namen und ihrer jeweiligen Farbe angezeigt.
+
+Die weißen Felder des Spielbretts stellen die Laufbahn C dar, die alle Spielfiguren zurücklegen müssen. Auf den jeweils farbigen Feldern auf der Laufbahn C beginnen die Spielfiguren ihren Weg über die weißen Felder. Auf der A-Feldern warten die Spielfiguren auf ihren Einsatz. Wer seine 4 Spielfiguren als erster in sein jeweiliges Ziel (Punkt D) gebracht hat, gewinnt das Spiel.
+
+\newpage
+
+\noindent Der Spieler, der an der Reihe ist, würfelt durch Klicken auf das Symbol \enquote{Fragezeichen in der Box} bei Punkt B. Wer keine Spielfigur auf der Laufbahn hat, weil alle Figuren geschlagen wurden oder zu Beginn des Spiels, darf dreimal würfeln. Die Spielfiguren, die auf den A-Feldern stehen, können nur mit einer \enquote{6} in das Spiel gebracht werden. Wird eine \enquote{6} gewürfelt, kann der Spieler selbst entscheiden mit welcher Figur er vom Startfeld A gehen möchte. Durch das Anklicken einer Figur wird diese ausgewählt und die Startposition auf der Laufbahn wird in Orange angezeigt. Wer eine \enquote{6} würfelt, hat nach seinem Zug einen weiteren Wurf frei. Erzielt er dabei wieder eine \enquote{6}, darf er nach dem Ziehen erneut würfeln. Bei einer \enquote{6} muss man eine neue Figur ins Spiel bringen, solange noch Spielfiguren auf dem eigenen A-Feldern stehen. Die neue Figur wird dann auf die Startposition der Laufbahn gestellt. Ist dieses Feld noch von einer anderen eigenen Spielfigur besetzt, muss diese Figur erst mit der \enquote{6} weitergezogen werden. Steht dagegen eine fremde Figur auf dem Feld, wird sie geschlagen. Wer eine \enquote{6} würfelt und keine Spielfigur mehr auf den B-Feldern hat, darf mit einer seiner Figuren auf der Laufbahn sechs Felder weiterziehen und dann noch einmal würfeln.
+
+Eigene und fremde Figuren können übersprungen werden. Die besetzten Felder werden aber mitgezählt. Wer mehrere Spielfiguren auf der Laufbahn hat, kann sich aussuchen, mit welcher Figur er weiterzieht. Wer mit dem letzten Punkt seiner Augenzahl auf ein Feld tritt, das von einer fremden Spielfigur besetzt ist, schlägt diese Figur, welche wiederum automatisch zurück in den Startplatz gesetzt wird. 
+
+\begin{figure}[htbp]
+\centering
+\centerline{\includegraphics[scale=.6]{anleitung5}}
+\caption{Hauptfenster der Anwendung mit Spielbrett}
+\label{fig:anleitung5}
+\end{figure}
+
+% \newpage
+% \titlespacing*{\chapter}{0pt}{-30mm}{10pt}
+% \titleformat{\chapter}[display]
+%   {\normalfont\bfseries}{}{10pt}{\Huge\thechapter.\quad}
   
 % \chapter{Fragen an M. Müller}
 % \pagestyle{scrheadings}
