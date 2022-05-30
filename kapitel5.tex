@@ -339,7 +339,14 @@ sinnvoll einsetzen, begründen und UML-Diagramm]}
 
 \newpage
 \subsubsection{Entwurfsmuster: Observer-Pattern (4P)}
-\noindent Das Observer-Pattern wurde eingesetzt, um eine lose Kopplung zwischen der Verwaltung des Spiels (\emph{GameService}-Klasse) und der Visualisierung (\emph{GameFrame}-Klasse) zu schaffen.
+\noindent Das Observer-Pattern wurde eingesetzt, um eine lose Kopplung zwischen der Verwaltung des Spiels (\emph{GameService}-Klasse) und der Visualisierung (\emph{GameFrame}-Klasse) zu schaffen. Da die \emph{GameFrame}-Klasse mit dem Benutzer interagiert, muss dies an die \emph{GameService}-Klasse weitergeleitet werden. Ein direkter Methodenaufruf würde hier eine starke Kopplung schaffen und deshalb haben wir uns für das Observer-Pattern entschieden.
+
+\begin{figure}[htbp]
+\centering
+\centerline{\includegraphics[scale=.7]{observer}}
+\caption{Observer-Pattern [Eigene Darstellung aus \emph{IntelliJ}]}
+\label{fig:oberver}
+\end{figure}
 
 \newpage
 \titlespacing*{\chapter}{0pt}{-30mm}{10pt}
